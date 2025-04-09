@@ -177,7 +177,7 @@ const validateBet = async (join, list_join, x, money, game) => {
 
   return true;
 };
-
+// to create bet this function is used.   http://localhost:3000/api/webapi/action/5d/join
 const betK5D = async (req, res) => {
   try {
     let { join, list_join, x, money, game } = req.body;
@@ -208,6 +208,23 @@ const betK5D = async (req, res) => {
     let userInfo = user[0];
     let period = k5DNow[0];
 
+    // validate if user already have bet or big or small and betting again
+    // const [makeBets] = await connection.query(
+    //   `SELECT bet FROM result_5d WHERE status = 0 AND phone = '${userInfo.phone}'`,
+    // );
+    // const betTypeList = makeBets.map((it) => it.bet);
+    // if (betTypeList.length > 0 && !betTypeList.includes(list_join)) {
+    //   return res.status(200).json({
+    //     message: `Error! You are not allowed to make different bet.`,
+    //     status: false,
+    //   });
+    // }
+    //our code start form here
+    const big_small_array = ["b", "s"];
+    const odd_even_array = ["l", "c"];
+    const number_array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+
     let date = new Date();
     let years = formateT(date.getFullYear());
     let months = formateT(date.getMonth() + 1);
@@ -220,8 +237,11 @@ const betK5D = async (req, res) => {
     let price = total - fee;
 
     let check = userInfo.money - total;
+
+
     if (check >= 0) {
       let timeNow = Date.now();
+
       const sql = `INSERT INTO result_5d SET id_product = ?,phone = ?,code = ?,invite = ?,stage = ?,level = ?,money = ?,price = ?,amount = ?,fee = ?,game = ?,join_bet = ?,bet = ?,status = ?,time = ?`;
       await connection.execute(sql, [
         id_product,
@@ -316,6 +336,25 @@ const listOrderOld = async (req, res) => {
   const [period] = await connection.query(
     `SELECT period FROM 5d WHERE status = 0 AND game = '${game}' ORDER BY id DESC LIMIT 1 `,
   );
+
+  /**
+   *  need to find the all records from the result_5d table with respect to game and status = 1 des limit 1
+   */
+  const [records] = await connection.query(
+    `SELECT * FROM result_5d WHERE status = 1 AND game = '${game}' ORDER BY id DESC LIMIT 1`
+  );
+
+   // Ensure we have at least one record before accessing records[0].stage
+   let record;
+  if (records.length > 0) {
+    const stage = records[0].stage; // Extracting stage from the first record
+    // Find the data from the 5D table with the condition status != 0, game, and period = stage
+     [record] = await connection.query(
+      `SELECT * FROM 5d WHERE status != ? AND game = ? AND period = ?`,
+      [0, game, stage]
+    );
+  }
+
   if (k5d.length == 0) {
     return res.status(200).json({
       code: 0,
@@ -363,6 +402,13 @@ const GetMyEmerdList = async (req, res) => {
   }
 
   let game = Number(gameJoin);
+// get the period for one instance of the game
+const [k5DNow] = await connection.query(
+  "SELECT `period`, `result` FROM `5d` WHERE `status` = ? AND `game` = ? ORDER BY `id` DESC LIMIT 1",
+  [0, game] 
+);
+
+ 
 
   const [user] = await connection.query(
     "SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE token = ? AND veri = 1 LIMIT 1 ",
@@ -372,6 +418,8 @@ const GetMyEmerdList = async (req, res) => {
     `SELECT * FROM result_5d WHERE phone = ? AND game = '${game}' ORDER BY id DESC LIMIT ${Number(pageno) + "," + Number(pageto)}`,
     [user[0].phone],
   );
+
+ 
   const [result_5dAll] = await connection.query(
     `SELECT * FROM result_5d WHERE phone = ? AND game = '${game}' ORDER BY id DESC `,
     [user[0].phone],
@@ -412,15 +460,15 @@ const GetMyEmerdList = async (req, res) => {
   });
 };
 
-function makeGameResult(length) {
-  var result = "";
-  var characters = "0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+// function makeGameResult(length) {
+//   var result = "";
+//   var characters = "0123456789";
+//   var charactersLength = characters.length;
+//   for (var i = 0; i < length; i++) {
+//     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//   }
+//   return result;
+// }
 
 const add5D = async (game) => {
   try {
@@ -436,7 +484,10 @@ const add5D = async (game) => {
     const isPendingGame = k5D.length > 0;
 
     if (isPendingGame) {
-      let result2 = makeGameResult(5);
+      // let result2 = makeGameResult(5);
+
+      let result2 = await generateGameResult(game);
+
       const [setting] = await connection.query("SELECT * FROM `admin_ac` ");
       let period = k5D[0].period;
 
@@ -496,263 +547,228 @@ const add5D = async (game) => {
   }
 };
 
+function calculateBetTotals(data) {
+  const result = {};
+
+  data.forEach((item) => {
+    const bet = item.bet;
+    const money = item.money;
+
+    // If the bet key already exists, add to its value; otherwise, initialize it
+    if (result[bet]) {
+      result[bet] += money;
+    } else {
+      result[bet] = money;
+    }
+  });
+
+  return result;
+}
+
+
 async function funHanding(game) {
-  const [k5d] = await connection.query(
-    `SELECT * FROM 5d WHERE status != 0 AND game = ${game} ORDER BY id DESC LIMIT 1 `,
-  );
-  let k5dInfo = k5d[0];
+  try {
+    const [k5d] = await connection.query(
+      `SELECT * FROM 5d WHERE status = 0 AND game = ${game} ORDER BY id DESC LIMIT 2 `,
+    );
+    let k5dInfo = k5d[1];
 
-  // update ket qua
+
+
+
+    const joins = ["a", "b", "c", "d", "e", "total"];
+
+for (const join of joins) {
+  // taking all the status === 0 records
+  const [big_small_bet] = await connection.execute(
+    `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?)`,
+    [0, game, join, 'b', 's']
+  );
+  const [odd_even_bet] = await connection.execute(
+    `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?)`,
+    [0, game, join, 'l', 'c']
+  );
+  const [number_bet] = await connection.execute(
+    `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [0, game, join, '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  );
+
+  const final_big_small_object = calculateBetTotals(big_small_bet);
+  const final_odd_even_object = calculateBetTotals(odd_even_bet);
+  const final_number_object = calculateBetTotals(number_bet);
+
+  // -------------------------- for each join -------------------
+  // for big small update
+  const loose_bet_big_small = Object.keys(final_big_small_object)?.length === 1 ? Object.keys(final_big_small_object)[0]  :  (Number(final_big_small_object.b)) > (Number(final_big_small_object.s)) ? 'b' : 's';
+
   await connection.execute(
-    `UPDATE result_5d SET result = ? WHERE status = 0 AND game = ${game}`,
-    [k5dInfo.result],
+    `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+    [0, game, join, loose_bet_big_small]
   );
-  let result = String(k5dInfo.result).split("");
-  let a = result[0];
-  let b = result[1];
-  let c = result[2];
-  let d = result[3];
-  let e = result[4];
-  let total = 0;
-  for (let i = 0; i < result.length; i++) {
-    total += Number(result[i]);
+
+  // for odd even update
+  const loose_bet_odd_even =  Object.keys(final_odd_even_object)?.length === 1 ? Object.keys(final_odd_even_object)[0]  : (Number(final_odd_even_object.c) ) > (Number(final_odd_even_object.l)) ? 'c' : 'l';
+
+  await connection.execute(
+    `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+    [0, game, join, loose_bet_odd_even]
+  );
+
+  // Ensure all numbers (0-9) exist in final_number_object
+  const original_final_object = { ...final_number_object };
+  for (let i = 0; i <= 9; i++) {
+    const key = i.toString();
+    if (!final_number_object.hasOwnProperty(key)) {
+      final_number_object[key] = 0; // Initialize missing keys with 0
+    }
   }
 
-  // xử lý game a
-  const [joinA] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'a' `,
-  );
-  let lengthA = joinA.length;
-  for (let i = 0; i < lengthA; i++) {
-    let info = joinA[i];
-    let sult = info.bet.split("");
-    let check = isNumber(info.bet);
-    if (check) {
-      const joinNum = sult.includes(a);
-      if (!joinNum) {
-        await connection.execute(
-          `UPDATE result_5d SET status = 2 WHERE id = ? `,
-          [info.id],
-        );
+  let check_zero_exist = false;
+
+  for (const bet in final_number_object) {
+    if (final_number_object[bet] === 0) {
+      check_zero_exist = true;
+    }
+  }
+  if (check_zero_exist) {
+    for (const key of Object.keys(original_final_object)) {
+      await connection.execute(
+        `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+        [0, game, join, key]
+      );
+    }
+  } else {
+    const lowestKey = Object.keys(final_number_object).reduce((lowest, key) =>
+      final_number_object[key] < final_number_object[lowest] ? key : lowest
+    );
+
+    try {
+      // Iterate through all keys in the object
+      for (const key of Object.keys(final_number_object)) {
+        const status = key === lowestKey ? 1 : 2; // Set status to 1 for the lowest key, 2 for the rest
+
+        const query = `
+          UPDATE result_5d
+          SET status = ?
+          WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?
+        `;
+        const values = [status, 0, game, join, key];
+
+        await connection.execute(query, values);
+        console.log(`Key ${key} updated with status ${status}`);
       }
+    } catch (error) {
+      console.error("Error updating database:", error.message);
     }
   }
-  if (lengthA > 0) {
-    if (a == "0" || a == "1" || a == "2" || a == "3" || a == "4") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'a' AND bet = 'b' `,
-      );
-    }
-    if (a == "5" || a == "6" || a == "7" || a == "8" || a == "9") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'a' AND bet = 's' `,
-      );
-    }
-    if (Number(a) % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'a' AND bet = 'l' `,
-      );
-    }
-    if (Number(a) % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'a' AND bet = 'c' `,
-      );
-    }
-  }
+}
+  
 
-  // xử lý game b
-  const [joinB] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'b' `,
-  );
-  let lengthB = joinB.length;
-  for (let i = 0; i < lengthB; i++) {
-    let info = joinB[i];
-    let sult = info.bet.split("");
-    let check = isNumber(info.bet);
-    if (check) {
-      const joinNum = sult.includes(b);
-      if (!joinNum) {
-        await connection.execute(
-          `UPDATE result_5d SET status = 2 WHERE id = ? `,
-          [info.id],
-        );
-      }
-    }
-  }
-  if (lengthB > 0) {
-    if (b == "0" || b == "1" || b == "2" || b == "3" || b == "4") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'b' AND bet = 'b' `,
-      );
-    }
-    if (b == "5" || b == "6" || b == "7" || b == "8" || b == "9") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'b' AND bet = 's' `,
-      );
-    }
-    if (Number(b) % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'b' AND bet = 'l' `,
-      );
-    }
-    if (Number(b) % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'b' AND bet = 'c' `,
-      );
-    }
-  }
 
-  // xử lý game c
-  const [joinC] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'c' `,
-  );
-  let lengthC = joinC.length;
-  for (let i = 0; i < lengthC; i++) {
-    let info = joinC[i];
-    let sult = info.bet.split("");
-    let check = isNumber(info.bet);
-    if (check) {
-      const joinNum = sult.includes(c);
-      if (!joinNum) {
-        await connection.execute(
-          `UPDATE result_5d SET status = 2 WHERE id = ? `,
-          [info.id],
-        );
-      }
-    }
-  }
-  if (lengthC > 0) {
-    if (c == "0" || c == "1" || c == "2" || c == "3" || c == "4") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'c' AND bet = 'b' `,
-      );
-    }
-    if (c == "5" || c == "6" || c == "7" || c == "8" || c == "9") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'c' AND bet = 's' `,
-      );
-    }
-    if (Number(c) % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'c' AND bet = 'l' `,
-      );
-    }
-    if (Number(c) % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'c' AND bet = 'c' `,
-      );
-    }
-  }
+//      //our code start form here
+//      const big_small_array = ["b", "s"];
+//      const odd_even_array = ["l", "c"];
+//      const number_array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  // xử lý game d
-  const [joinD] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'd' `,
-  );
-  let lengthD = joinD.length;
-  for (let i = 0; i < lengthD; i++) {
-    let info = joinD[i];
-    let sult = info.bet.split("");
-    let check = isNumber(info.bet);
-    if (check) {
-      const joinNum = sult.includes(d);
-      if (!joinNum) {
-        await connection.execute(
-          `UPDATE result_5d SET status = 2 WHERE id = ? `,
-          [info.id],
-        );
-      }
-    }
-  }
-  if (lengthD > 0) {
-    if (d == "0" || d == "1" || d == "2" || d == "3" || d == "4") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'd' AND bet = 'b' `,
-      );
-    }
-    if (d == "5" || d == "6" || d == "7" || d == "8" || d == "9") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'd' AND bet = 's' `,
-      );
-    }
-    if (Number(d) % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'd' AND bet = 'l' `,
-      );
-    }
-    if (Number(d) % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'd' AND bet = 'c' `,
-      );
-    }
-  }
 
-  // xử lý game e
-  const [joinE] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'e' `,
-  );
-  let lengthE = joinE.length;
-  for (let i = 0; i < lengthE; i++) {
-    let info = joinE[i];
-    let sult = info.bet.split("");
-    let check = isNumber(info.bet);
-    if (check) {
-      const joinNum = sult.includes(e);
-      if (!joinNum) {
-        await connection.execute(
-          `UPDATE result_5d SET status = 2 WHERE id = ? `,
-          [info.id],
-        );
-      }
-    }
-  }
-  if (lengthE > 0) {
-    if (e == "0" || e == "1" || e == "2" || e == "3" || e == "4") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'e' AND bet = 'b' `,
-      );
-    }
-    if (e == "5" || e == "6" || e == "7" || e == "8" || e == "9") {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'e' AND bet = 's' `,
-      );
-    }
-    if (Number(e) % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'e' AND bet = 'l' `,
-      );
-    }
-    if (Number(e) % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'e' AND bet = 'c' `,
-      );
-    }
-  }
+//      // taking all the status === 0 records
+//      const [big_small_bet] = await connection.execute(
+//       `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?)`,
+//       [0, game, 'a', 'b', 's']
+//     );
+//      const [odd_even_bet] = await connection.execute(
+//       `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?)`,
+//       [0, game, 'a', "l", "c"]
+//     );
+//      const [number_bet] = await connection.execute(
+//       `SELECT * FROM result_5d WHERE status = ? AND game = ? AND join_bet = ? AND bet IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+//       [0, game, 'a', "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+//     );
 
-  // xử lý game e
-  const [joinTotal] = await connection.execute(
-    `SELECT id, bet FROM result_5d WHERE status = 0 AND game = ${game} AND join_bet = 'total' `,
-  );
-  if (joinTotal.length > 0) {
-    if (total <= 22) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'total' AND bet = 'b' `,
-      );
-    }
-    if (total > 22) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'total' AND bet = 's' `,
-      );
-    }
-    if (total % 2 == 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'total' AND bet = 'l' `,
-      );
-    }
-    if (total % 2 != 0) {
-      await connection.execute(
-        `UPDATE result_5d SET status = 2 WHERE join_bet = 'total' AND bet = 'c' `,
-      );
-    }
+
+//      const final_big_small_object = calculateBetTotals(big_small_bet)
+//      const final_odd_even_object = calculateBetTotals(odd_even_bet)
+//      const final_number_object = calculateBetTotals(number_bet)
+
+
+     
+
+// // -------------------------- for a game join -------------------
+//   //for big small update
+//      const loose_bet_big_small = Number(final_big_small_object.b) > Number(final_big_small_object.s) ? 'b' : 's';
+//      console.log("loose_bet_big_small", loose_bet_big_small);
+     
+//      await connection.execute(
+//        `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+//        [0, game, 'a', loose_bet_big_small]
+//      );
+
+//      //for odd even update
+//      const loose_bet_odd_even = Number(final_odd_even_object.c) > Number(final_odd_even_object.l) ? 'c' : 'l';
+//      console.log("loose_bet_odd_even", loose_bet_odd_even);
+     
+//      await connection.execute(
+//        `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+//        [0, game, 'a', loose_bet_odd_even]
+//      );
+
+//     // Ensure all numbers (0-9) exist in final_number_object
+
+//     const original_final_object = final_number_object;
+// for (let i = 0; i <= 9; i++) {
+//   const key = i.toString();
+//   if (!final_number_object.hasOwnProperty(key)) {
+//     final_number_object[key] = 0; // Initialize missing keys with 0
+//   }
+// }
+// console.log("final_number_object", final_number_object)
+
+// let check_zero_exist = false
+
+// for (const bet in final_number_object) {
+//   if(final_number_object[bet]=== 0){
+//     check_zero_exist = true
+//   }
+// }
+// if (check_zero_exist) {
+//   for (const key of Object.keys(original_final_object)) {
+//     await connection.execute(
+//       `UPDATE result_5d SET status = 2 WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?`,
+//       [0, game, 'a', key]
+//     );
+//   }
+// }else {
+
+//    const lowestKey = Object.keys(final_number_object).reduce((lowest, key) => 
+//     final_number_object[key] < final_number_object[lowest] ? key : lowest
+//   );
+
+//   console.log("Lowest key (winner):", lowestKey);
+
+//   try {
+//     // Iterate through all keys in the object
+//     for (const key of Object.keys(final_number_object)) {
+//       const status = key === lowestKey ? 1 : 2; // Set status to 1 for the lowest key, 2 for the rest
+
+//       const query = `
+//         UPDATE result_5d
+//         SET status = ?
+//         WHERE status = ? AND game = ? AND join_bet = ? AND bet = ?
+//       `;
+//       const values = [status, 0, game, 'a', key];
+
+//       await connection.execute(query, values);
+//       console.log(`Key ${key} updated with status ${status}`);
+//     }
+//   } catch (error) {
+//     console.error("Error updating database:", error.message);
+//   }
+// }
+
+
+   
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -764,6 +780,7 @@ const handling5D = async (typeid) => {
   const [order] = await connection.execute(
     `SELECT id, phone, bet, price, money, fee, amount FROM result_5d WHERE status = 0 AND game = ${game} `,
   );
+
   for (let i = 0; i < order.length; i++) {
     let orders = order[i];
     let id = orders.id;
@@ -772,7 +789,7 @@ const handling5D = async (typeid) => {
     let check = isNumber(orders.bet);
     if (check) {
       let arr = orders.bet.split("");
-      let total = orders.money / arr.length / orders.amount;
+      let total = orders.money;
       let fee = total * 0.02;
       let price = total - fee;
       nhan_duoc += price * 9;
@@ -788,6 +805,121 @@ const handling5D = async (typeid) => {
     await connection.execute(sql, [nhan_duoc, phone]);
   }
 };
+async function calculateTotalPayout(result, game, bets) {
+  let payout = 0;
+  let resultArray = result.split("");
+
+  // Iterate over each bet
+  for (let bet of bets) {
+    const { join_bet, amount, bet_type } = bet;
+
+    // Determine the outcome for the current bet
+    let outcome = false;
+    switch (join_bet) {
+      case "a":
+        outcome = resultArray[0] === bet_type;
+        break;
+      case "b":
+        outcome = resultArray[1] === bet_type;
+        break;
+      case "c":
+        outcome = resultArray[2] === bet_type;
+        break;
+      case "d":
+        outcome = resultArray[3] === bet_type;
+        break;
+      case "e":
+        outcome = resultArray[4] === bet_type;
+        break;
+      case "total":
+        const total = resultArray.reduce(
+          (acc, num) => acc + parseInt(num, 10),
+          0,
+        );
+        if (bet_type === "b") {
+          outcome = total <= 22;
+        } else if (bet_type === "s") {
+          outcome = total > 22;
+        } else if (bet_type === "l") {
+          outcome = total % 2 === 0;
+        } else if (bet_type === "c") {
+          outcome = total % 2 !== 0;
+        }
+        break;
+      default:
+        break;
+    }
+
+    // Add the payout amount if the bet is a winner
+    if (outcome) {
+      payout += amount * 2; // Example payout logic
+    }
+  }
+
+  return payout;
+}
+
+async function makeGameResult(length, game, bets) {
+  let possibleResults = [];
+  let characters = "0123456789";
+  let charactersLength = characters.length;
+
+  // Generate all possible results for the game
+  for (let i = 0; i < Math.pow(charactersLength, length); i++) {
+    let result = "";
+    let num = i;
+
+    for (let j = 0; j < length; j++) {
+      result = characters[num % charactersLength] + result;
+      num = Math.floor(num / charactersLength);
+    }
+
+    // Check if the result generates a 0 payout
+    let totalPayout = calculateTotalPayout(result, game, bets);
+    possibleResults.push({ result, payout: totalPayout });
+
+    // console.log("totalPayout", totalPayout)
+
+    if (totalPayout === 0) {
+      return result; // Return immediately if 0 payout is found
+    }
+  }
+
+  // Sort results by payout and return the one with the minimum payout
+  possibleResults.sort((a, b) => a.payout - b.payout);
+  return possibleResults[0].result;
+}
+
+async function generateGameResult(game) {
+  try {
+    const [bets] = await connection.query(
+      `SELECT join_bet, bet as bet_type, amount FROM result_5d WHERE status = 0 AND game = ?`,
+      [game],
+    );
+
+    if (bets.length === 0) {
+      const generateRandomString = (length) => {
+        const characters = "0123456789";
+        const charactersLength = characters.length;
+        let result = "";
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(
+            Math.floor(Math.random() * charactersLength),
+          );
+        }
+        return result;
+      };
+
+      return generateRandomString(5);
+    }
+
+    let result = await makeGameResult(5, game, bets);
+    return result;
+  } catch (error) {
+    console.error("Error generating game result:", error.message);
+    throw new Error("Failed to generate game result.");
+  }
+}
 
 const k5Controller = {
   K5DPage,
