@@ -16,6 +16,8 @@ var pageno = 0;
 var limit = 10;
 var page = 1;
 socket.on("data-server-5d", function (msg) {
+  console.log("calllllllllllllllsajalllll");
+  
   if (msg) {
     let checkData = GAME_TYPE;
     if (checkData == msg.game) {
@@ -670,7 +672,11 @@ function GetMyEmerdList(datas) {
 
       let join = "";
       let arr2 = data.bet.split("");
+      console.log("arr2arr2arr2arr2arr2", arr2);
+      
       for (let i = 0; i < arr2.length; i++) {
+        console.log("arr2222", arr2[i]);
+        
         let check = isNumber(data.bet);
         if (check) {
           join += `
@@ -689,7 +695,7 @@ function GetMyEmerdList(datas) {
       }
       return `
          <div data-v-b4b99df8="" class="MyGameRecordList__C-item" onclick="openGameBetDetails(${index})">
-            <div data-v-b4b99df8="" class="MyGameRecordList__C-item-l MyGameRecordList__C-item-l-8">8</div>
+            <div data-v-b4b99df8="" class="MyGameRecordList__C-item-l MyGameRecordList__C-item-l-8">${arr2}</div>
             <div data-v-b4b99df8="" class="MyGameRecordList__C-item-m">
                <div data-v-b4b99df8="" class="MyGameRecordList__C-item-m-top">${data.stage}</div>
                <div data-v-b4b99df8="" class="MyGameRecordList__C-item-m-bottom">${timerJoin(data.time)}</div>

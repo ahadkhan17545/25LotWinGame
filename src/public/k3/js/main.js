@@ -12,27 +12,39 @@ const getGameType = () => {
 let GAME_TYPE = getGameType();
 
 function totalMoney() {
+  console.log("calllltotallll money");
+  
   let amount = $(".xvalue").val();
   let money = $(".amount-box").find(".action").attr("value");
+
+  console.log("amount", amount);
+  console.log("money", money);
+  
 
   let listJoin = $(".list-join-ao li");
 
   $(".info-bet").attr("xvalue", amount);
   $(".info-bet").attr("money", money);
 
-  let result = Number(amount) * Number(money) * Number(listJoin.length);
+  let result = Number(amount) * Number(money);
+
+  console.log("result", result);
+  
   $(".result").text(result + "");
 }
 
 function totalMoney2() {
   let amount = $(".xvalue").val();
   let money = $(".amount-box").find(".action").attr("value");
+  console.log("amount", amount);
+  console.log("money", money);
 
   let listJoin = $('.purple[data="chon-2-so-phu-hop"] .item.action');
   let listJoin2 = $('.num-box.red[data="chon-1-cap-duy-nhat"] .item.action');
   let listJoin3 = $('.num-box.green[data="chon-1-cap-duy-nhat"] .item.action');
   $(".info-bet").attr("xvalue", amount);
   $(".info-bet").attr("money", money);
+
 
   let result =
     Number(amount) *
@@ -44,6 +56,8 @@ function totalMoney2() {
 function totalMoney3() {
   let amount = $(".xvalue").val();
   let money = $(".amount-box").find(".action").attr("value");
+  console.log("amount", amount);
+  console.log("money", money);
 
   let listJoin = $('.bet-con[game="3"] .item.action');
   let listJoin1 = $(".chon-3-so-giong-nhau .li.action");
@@ -60,6 +74,8 @@ function totalMoney4() {
   let amount = Number($(".xvalue").val());
   let money = Number($(".amount-box").find(".action").attr("value"));
 
+  console.log("amount", amount);
+  console.log("money", money);
   let listJoin1 = $('.bet-con[game="4"] .num-box:eq(0) .item.action');
   let listJoinHang1 = listJoin1.length;
   let x1 = 0;
@@ -186,6 +202,18 @@ $(".circular .li").click(function (e) {
   $("body").addClass("van-overflow-hidden");
 });
 
+//sajal
+$(".my_unique_3").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 3") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+
+// transform: translateY(400px);
+
+
 $(".pop-quytac button, .pop-quytac-buy button").click(function (e) {
   e.preventDefault();
   $(".van-overlay, .pop-quytac, .pop-quytac-buy").fadeOut(300);
@@ -216,116 +244,122 @@ $(".reload_money").click(function (e) {
   reload_money();
 });
 
-// $(".van-notice-bar__content").css("transition-duration", "42s")
-// setTimeout(() => {
-//    $(".van-notice-bar__content").css("transform", "translateX(-1872.29px)")
-// }, 100)
+$(".van-notice-bar__content").css("transition-duration", "42s")
+setTimeout(() => {
+   $(".van-notice-bar__content").css("transform", "translateX(-1872.29px)")
+}, 100)
 
-// setInterval(() => {
-//    $(".van-notice-bar__content").css("transition-duration", "0s")
-//    $(".van-notice-bar__content").css("transform", "translateX(0px)")
-//    setTimeout(() => {
-//       $(".van-notice-bar__content").css("transition-duration", "42s")
-//       $(".van-notice-bar__content").css("transform", "translateX(-1872.29px)")
-//    }, 100)
-// }, 42000)
+setInterval(() => {
+   $(".van-notice-bar__content").css("transition-duration", "0s")
+   $(".van-notice-bar__content").css("transform", "translateX(0px)")
+   setTimeout(() => {
+      $(".van-notice-bar__content").css("transition-duration", "42s")
+      $(".van-notice-bar__content").css("transform", "translateX(-1872.29px)")
+   }, 100)
+}, 42000)
 
-// $(".multiple-box .li").click(function (e) {
-//    e.preventDefault()
-//    let value = $(this).attr("value")
-//    $(".xvalue").val(value)
-//    $(".multiple-box .li").removeClass("action")
-//    $(this).addClass("action")
-//    let game = $(".bet-tab .item.action").attr("game")
-//    if (game == 1) totalMoney()
-//    if (game == 2) totalMoney2()
-//    if (game == 3) totalMoney3()
-//    if (game == 4) totalMoney4()
-//    let value2 = $(".xvalue").val()
-//    if (value2 > 1) {
-//       $(".minus-plus .minus").addClass("action")
-//    } else {
-//       $(".minus-plus .minus").removeClass("action")
-//    }
-// })
+$(".multiple-box .li").click(function (e) {
+   e.preventDefault()
+   let value = $(this).attr("value")
+   console.log("vallll", value);
+   
+   $(".xvalue").val(value)
+   $(".multiple-box .li").removeClass("action")
+   $(this).addClass("action")
+   let game = $(".K3B__C-nav .active").attr("tab-type")
+   if (game == 1) totalMoney()
+   if (game == 2) totalMoney2()
+   if (game == 3) totalMoney3()
+   if (game == 4) totalMoney4()
+   let value2 = $(".xvalue").val()
+   if (value2 > 1) {
+      $(".minus-plus .minus").addClass("action")
+   } else {
+      $(".minus-plus .minus").removeClass("action")
+   }
+})
 
-// $(".amount-box .li").click(function (e) {
-//    e.preventDefault()
-//    $(".amount-box .li").removeClass("action")
-//    $(this).addClass("action")
-//    let game = $(".bet-tab .item.action").attr("game")
-//    if (game == 1) totalMoney()
-//    if (game == 2) totalMoney2()
-//    if (game == 3) totalMoney3()
-//    if (game == 4) totalMoney4()
-//    let value2 = $(".xvalue").val()
-//    if (value2 > 1) {
-//       $(".minus-plus .minus").addClass("action")
-//    } else {
-//       $(".minus-plus .minus").removeClass("action")
-//    }
-// })
+$(".amount-box .li").click(function (e) {
+   e.preventDefault()
+   console.log("callll 2222222222222");
+   
+   $(".amount-box .li").removeClass("action")
+   $(this).addClass("action")
+   let game = $(".K3B__C-nav .active").attr("tab-type")
+   console.log("game", game);
+   
+   if (game == 1) totalMoney()
+   if (game == 2) totalMoney2()
+   if (game == 3) totalMoney3()
+   if (game == 4) totalMoney4()
+   let value2 = $(".xvalue").val()
+   if (value2 > 1) {
+      $(".minus-plus .minus").addClass("action")
+   } else {
+      $(".minus-plus .minus").removeClass("action")
+   }
+})
 
-// $(".minus-plus .minus").click(function (e) {
-//    e.preventDefault()
-//    let value = Number($(".xvalue").val())
-//    value -= 1
-//    if (value <= 1) {
-//       value = 1
-//       $(this).removeClass("action")
-//    }
-//    $(`.multiple-box .li`).removeClass("action")
-//    $(`.multiple-box .li[value=${value}]`).addClass("action")
-//    $(".xvalue").val(value)
-//    let game = $(".bet-tab .item.action").attr("game")
-//    if (game == 1) totalMoney()
-//    if (game == 2) totalMoney2()
-//    if (game == 3) totalMoney3()
-//    if (game == 4) totalMoney4()
-// })
+$(".minus-plus .minus").click(function (e) {
+   e.preventDefault()
+   let value = Number($(".xvalue").val())
+   value -= 1
+   if (value <= 1) {
+      value = 1
+      $(this).removeClass("action")
+   }
+   $(`.multiple-box .li`).removeClass("action")
+   $(`.multiple-box .li[value=${value}]`).addClass("action")
+   $(".xvalue").val(value)
+   let game = $(".K3B__C-nav .active").attr("tab-type")
+   if (game == 1) totalMoney()
+   if (game == 2) totalMoney2()
+   if (game == 3) totalMoney3()
+   if (game == 4) totalMoney4()
+})
 
-// $(".xvalue").on("input", () => {
-//    let value = $(".xvalue").val()
-//    if (value == "") {
-//       $(".minus-plus .minus").removeClass("action")
-//    } else if (value <= 0) {
-//       value = 1
-//       $(".minus-plus .minus").removeClass("action")
-//    } else if (value > 100) {
-//       value = 100
-//    }
-//    if (value > 1) {
-//       $(".minus-plus .minus").addClass("action")
-//    } else {
-//       $(".minus-plus .minus").removeClass("action")
-//    }
-//    $(`.multiple-box .li`).removeClass("action")
-//    $(`.multiple-box .li[value=${value}]`).addClass("action")
-//    $(".xvalue").val(value)
-//    let game = $(".bet-tab .item.action").attr("game")
-//    if (game == 1) totalMoney()
-//    if (game == 2) totalMoney2()
-//    if (game == 3) totalMoney3()
-//    if (game == 4) totalMoney4()
-// })
+$(".xvalue").on("input", () => {
+   let value = $(".xvalue").val()
+   if (value == "") {
+      $(".minus-plus .minus").removeClass("action")
+   } else if (value <= 0) {
+      value = 1
+      $(".minus-plus .minus").removeClass("action")
+   } else if (value > 100) {
+      value = 100
+   }
+   if (value > 1) {
+      $(".minus-plus .minus").addClass("action")
+   } else {
+      $(".minus-plus .minus").removeClass("action")
+   }
+   $(`.multiple-box .li`).removeClass("action")
+   $(`.multiple-box .li[value=${value}]`).addClass("action")
+   $(".xvalue").val(value)
+   let game = $(".K3B__C-nav .active").attr("tab-type")
+   if (game == 1) totalMoney()
+   if (game == 2) totalMoney2()
+   if (game == 3) totalMoney3()
+   if (game == 4) totalMoney4()
+})
 
-// $(".minus-plus .plus").click(function (e) {
-//    e.preventDefault()
-//    let value = Number($(".xvalue").val())
-//    value += 1
-//    if (value > 100) {
-//       value = 100
-//    }
-//    $(`.multiple-box .li`).removeClass("action")
-//    $(`.multiple-box .li[value=${value}]`).addClass("action")
-//    $(".xvalue").val(value)
-//    $(".minus-plus .minus").addClass("action")
-//    let game = $(".bet-tab .item.action").attr("game")
-//    if (game == 1) totalMoney()
-//    if (game == 2) totalMoney2()
-//    if (game == 3) totalMoney3()
-//    if (game == 4) totalMoney4()
-// })
+$(".minus-plus .plus").click(function (e) {
+   e.preventDefault()
+   let value = Number($(".xvalue").val())
+   value += 1
+   if (value > 100) {
+      value = 100
+   }
+   $(`.multiple-box .li`).removeClass("action")
+   $(`.multiple-box .li[value=${value}]`).addClass("action")
+   $(".xvalue").val(value)
+   $(".minus-plus .minus").addClass("action")
+   let game = $(".K3B__C-nav .active").attr("tab-type")
+   if (game == 1) totalMoney()
+   if (game == 2) totalMoney2()
+   if (game == 3) totalMoney3()
+   if (game == 4) totalMoney4()
+})
 
 $(".txt-qu-ytac").click(function (e) {
   e.preventDefault();
@@ -491,6 +525,8 @@ $(".bet-tab .item").click(function (e) {
 });
 
 $(".list-join-total .item").click(function (e) {
+  console.log("calll....K3B__C-nav");
+  
   e.preventDefault();
   $('.list-join-ao span[game="1"]').removeClass("d-none");
   $(".pop-total").css("transform", "translateY(0px)");
@@ -1077,6 +1113,8 @@ function sendGame4() {
 }
 
 $(".confirm").click(async function (e) {
+  console.log("calllll...");
+  
   e.preventDefault();
   $(this).addClass("block-click");
   let game = $(".bet-tab .action").attr("game");

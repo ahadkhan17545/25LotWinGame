@@ -745,7 +745,7 @@ time,
 mark,
 audio,
 video {
-  padding: 0;
+  padding: 2px;
   margin: 0;
   font: inherit;
   font-size: 100%;
@@ -813,6 +813,42 @@ input:focus {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  line-height: .96rem;
+  font-size: .37333rem;
+  color: var(--text_color_L1)
+}
+.button_confirm{
+  width: 60%;
+  background-color: orange;
+  color: white;
+  text-align: center;
+}
+.button_cancel{
+  width: 40%;
+  color: black;
+  text-align: center;
+}
+.minus_button{
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plus_button{
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input_box_design{
+  height: 20px;
 }
 .c-row-middle-center {
   -webkit-box-pack: center;

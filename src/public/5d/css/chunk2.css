@@ -516,7 +516,21 @@
 }
 
 .game .betting-mark .info[data-v-42f27458] {
-  padding: 0.4rem;
+  padding: 1rem;
+}
+
+.red-round-box {
+  display: inline-block;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 30px;
+  height: 30px;
+  line-height: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .game .betting-mark .info .item .amount-box .li[data-v-42f27458] {
