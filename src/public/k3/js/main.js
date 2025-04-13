@@ -210,6 +210,371 @@ $(".my_unique_3").click(function (e) {
   .text("Total : 3") // Add the text
   .addClass("new-class"); // Add a new class
 });
+$(".my_unique_4").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 4") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_5").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 5") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_6").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 6") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_7").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 7") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_8").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 8") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_9").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 9") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_10").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 10") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_11").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 11") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_12").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 12") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_13").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 13") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_14").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 14") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_15").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 15") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_16").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 16") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_17").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 17") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_18").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 18") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_big").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : big") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_small").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : small") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_odd").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : odd") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_even").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : even") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_11").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 11") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_22").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 22") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_33").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 33") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_44").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 44") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_55").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 55") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_66").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 66") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_11").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 11") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_22").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 22") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_33").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 33") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_44").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 44") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_55").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 44") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_66").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 66") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_1").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 1") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_2").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 2") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_3").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 3") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_4").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 4") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_5").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 5") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_2_same_6").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 6") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_111").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 111") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_222").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 222") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_333").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 333") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_444").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 444") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_555").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 555") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_3_same_666").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 666") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".K3B__C-betting3-btn").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 333") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_1").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 1") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_2").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 2") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_3").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 3") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_4").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 4") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_5").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 5") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".my_unique_different_6").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 6") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".K3B__C-betting4-btn").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 2") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+$(".K3B__C-betting4-tip1").click(function (e) {
+  $(".my_personal_popup").css("transform", "translateY(0px)");
+  $(".list-join-ao span[game='1']").removeClass("d-none");
+  $(".list-join-ao span[game='1']")
+  .text("Total : 3") // Add the text
+  .addClass("new-class"); // Add a new class
+});
+
 
 // transform: translateY(400px);
 
