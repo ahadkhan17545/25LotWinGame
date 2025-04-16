@@ -204,6 +204,8 @@ $(".circular .li").click(function (e) {
 
 //sajal
 $(".my_unique_3").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_3").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -211,6 +213,8 @@ $(".my_unique_3").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_4").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_4").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -218,6 +222,8 @@ $(".my_unique_4").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_5").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_5").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -225,6 +231,8 @@ $(".my_unique_5").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_6").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_6").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -232,27 +240,35 @@ $(".my_unique_6").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_7").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_7").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
   .text("Total : 7") // Add the text
   .addClass("new-class"); // Add a new class
 });
-$(".my_unique_8").click(function (e) {
+$(".K3B__C-bettingList .my_unique_8").click(function (e) {
+  $(".active").removeClass("active");
+  $(".my_unique_8").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
   .text("Total : 8") // Add the text
   .addClass("new-class"); // Add a new class
 });
-$(".my_unique_9").click(function (e) {
+$(".K3B__C-bettingList.my_unique_9").click(function (e) {
+  $(".active").removeClass("active");
+  $(".my_unique_9").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
   .text("Total : 9") // Add the text
   .addClass("new-class"); // Add a new class
 });
-$(".my_unique_10").click(function (e) {
+$(".K3B__C-bettingList.my_unique_10").click(function (e) {
+  $(".active").removeClass("active");
+  $(".my_unique_10").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -260,6 +276,8 @@ $(".my_unique_10").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_11").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_11").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -267,13 +285,17 @@ $(".my_unique_11").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_12").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_12").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
   .text("Total : 12") // Add the text
   .addClass("new-class"); // Add a new class
 });
-$(".my_unique_13").click(function (e) {
+$(".my_unique_14").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_14").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -281,6 +303,8 @@ $(".my_unique_13").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_14").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_14").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -288,6 +312,8 @@ $(".my_unique_14").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_15").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_15").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -295,6 +321,8 @@ $(".my_unique_15").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_16").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_16").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -302,6 +330,8 @@ $(".my_unique_16").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_17").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_17").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -309,6 +339,8 @@ $(".my_unique_17").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_18").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_18").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -316,6 +348,8 @@ $(".my_unique_18").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_big").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_big").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -323,6 +357,8 @@ $(".my_unique_big").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_small").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_small").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -330,6 +366,8 @@ $(".my_unique_small").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_odd").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_odd").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -337,6 +375,8 @@ $(".my_unique_odd").click(function (e) {
   .addClass("new-class"); // Add a new class
 });
 $(".my_unique_even").click(function (e) {
+  $(".K3B__C-bettingList .active").removeClass("active");
+  $(".my_unique_even").addClass("active")
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
   $(".list-join-ao span[game='1']")
@@ -518,48 +558,62 @@ $(".K3B__C-betting3-btn").click(function (e) {
   .text("Total : 333") // Add the text
   .addClass("new-class"); // Add a new class
 });
-$(".my_unique_different_1").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 1") // Add the text
-  .addClass("new-class"); // Add a new class
+
+// different 1st game
+
+let selectedNumbers = []; // Array to store clicked numbers
+
+$(".my_unique_different_1, .my_unique_different_2, .my_unique_different_3, .my_unique_different_4, .my_unique_different_5, .my_unique_different_6").click(function () {
+    const number = $(this).attr("data"); // Get the number from the 'data' attribute
+
+    // Check if the number is already in the array
+    if (!selectedNumbers.includes(number)) {
+        selectedNumbers.push(number); // Add the number to the array
+    }
+
+    // If three numbers are selected
+    if (selectedNumbers.length === 3) {
+        const total = selectedNumbers.join(""); // Combine the numbers into a string (e.g., "123")
+
+        // Trigger the popup and update the content dynamically
+        $(".my_personal_popup").css("transform", "translateY(0px)");
+        $(".list-join-ao span[game='1']").removeClass("d-none");
+        $(".list-join-ao span[game='1']")
+            .text(`Total : ${total}`) // Add the dynamic text
+            .addClass("new-class"); // Add a new class
+
+        // Reset the array for future selections
+        selectedNumbers = [];
+    }
 });
-$(".my_unique_different_2").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 2") // Add the text
-  .addClass("new-class"); // Add a new class
+
+let selectedDifferentNumbers = []; // Array to store clicked numbers
+
+$(".my_unique_different_2_1, .my_unique_different_2_2, .my_unique_different_2_3, .my_unique_different_2_4, .my_unique_different_2_5, .my_unique_different_2_6").click(function () {
+    const number = $(this).attr("data"); // Get the number from the 'data' attribute
+
+    // Check if the number is already in the array
+    if (!selectedDifferentNumbers.includes(number)) {
+        selectedDifferentNumbers.push(number); // Add the number to the array
+    }
+
+    // If two numbers are selected
+    if (selectedDifferentNumbers.length === 2) {
+        const total = selectedDifferentNumbers.join(""); // Combine the numbers into a string (e.g., "12")
+
+        // Trigger the popup and update the content dynamically
+        $(".my_personal_popup").css("transform", "translateY(0px)");
+        $(".list-join-ao span[game='1']").removeClass("d-none");
+        $(".list-join-ao span[game='1']")
+            .text(`Total : ${total}`) // Add the dynamic text
+            .addClass("new-class"); // Add a new class
+
+        // Reset the array for future selections
+        selectedDifferentNumbers = [];
+    }
 });
-$(".my_unique_different_3").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 3") // Add the text
-  .addClass("new-class"); // Add a new class
-});
-$(".my_unique_different_4").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 4") // Add the text
-  .addClass("new-class"); // Add a new class
-});
-$(".my_unique_different_5").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 5") // Add the text
-  .addClass("new-class"); // Add a new class
-});
-$(".my_unique_different_6").click(function (e) {
-  $(".my_personal_popup").css("transform", "translateY(0px)");
-  $(".list-join-ao span[game='1']").removeClass("d-none");
-  $(".list-join-ao span[game='1']")
-  .text("Total : 6") // Add the text
-  .addClass("new-class"); // Add a new class
-});
+
+
 $(".K3B__C-betting4-btn").click(function (e) {
   $(".my_personal_popup").css("transform", "translateY(0px)");
   $(".list-join-ao span[game='1']").removeClass("d-none");
@@ -1289,11 +1343,13 @@ function alertMess(mess) {
 
 function sendGame1() {
   let join = "";
-  let countwe = $('.bet-con[game="1"] .list-join-total .item .action');
-  for (let i = 0; i < countwe.length; i++) {
-    join += countwe[i].attributes[2].value + ",";
-  }
-  let listJoin = join.slice(0, -1);
+  // let countwe = $('.bet-con[game="1"] .list-join-total .item .action');
+  // for (let i = 0; i < countwe.length; i++) {
+  //   join += countwe[i].attributes[2].value + ",";
+  // }
+
+  let listJoin = $('.K3B__C-bettingList .active').attr("data-join");
+  console.log("listJoin", listJoin)
   let xvalue = $(".info-bet").attr("xvalue");
   let money = $(".info-bet").attr("money");
   $.ajax({
@@ -1482,8 +1538,9 @@ $(".confirm").click(async function (e) {
   
   e.preventDefault();
   $(this).addClass("block-click");
-  let game = $(".bet-tab .action").attr("game");
-
+  let game = $(".K3B__C-nav .active").attr("tab-type")
+  // let game = $(".bet-tab .action").attr("game");
+console.log("game", game)
   if (game == 1) {
     await sendGame1();
   } else if (game == 2) {
